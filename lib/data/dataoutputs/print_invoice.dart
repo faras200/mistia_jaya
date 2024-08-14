@@ -33,11 +33,11 @@ class PrintInvoice {
     String payment = paymentMethod == 'Tunai'
         ? 'Tunai'
         : paymentMethod == 'QRIS'
-            ? 'QRIS DB'
+            ? 'QRIS'
             : 'QRIS AP';
 
     bytes += generator.reset();
-    bytes += generator.text('Hoki Distribusi Niaga',
+    bytes += generator.text('RM Mistia Jaya',
         styles: const PosStyles(
           bold: true,
           align: PosAlign.center,
@@ -53,7 +53,7 @@ class PrintInvoice {
     //     ));
 
     bytes += generator.text(
-        'Jl. Peta Barat No.9a, Kec. Kalideres, Kota Jakarta Barat 11830',
+        'Griya Merpati Mas Blok C41A No.13, Kota Tangerang, Banten 15133',
         styles: const PosStyles(bold: true, align: PosAlign.center));
     bytes += generator.hr();
 
@@ -75,7 +75,7 @@ class PrintInvoice {
     bytes += generator.row(
       [
         PosColumn(
-          text: 'Receipt:',
+          text: 'Nama Kasir: ',
           width: 4,
           styles: const PosStyles(align: PosAlign.left, underline: true),
         ),

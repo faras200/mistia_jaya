@@ -23,7 +23,7 @@ class CwbPrint {
     final generator = Generator(PaperSize.mm58, profile);
 
     bytes += generator.reset();
-    bytes += generator.text('Hoki Distribusi Niaga',
+    bytes += generator.text('RM Mistia Jaya',
         styles: const PosStyles(
           bold: true,
           align: PosAlign.center,
@@ -38,7 +38,7 @@ class CwbPrint {
     //       width: PosTextSize.size1,
     //     ));
 
-    bytes += generator.text('Jl. Peta Barat No.9a',
+    bytes += generator.text('Jl. Fatmawati Kelapa Dua No.9a',
         styles: const PosStyles(bold: true, align: PosAlign.center));
     bytes += generator.text(
         'Date : ${DateFormat('dd-MM-yyyy HH:mm').format(DateTime.now())}',
@@ -46,7 +46,7 @@ class CwbPrint {
     // bytes += generator.text('Start 12 Desember 2023',
     //     styles: const PosStyles(bold: false, align: PosAlign.center));
 
-    bytes += generator.feed(1);
+    bytes += generator.hr();
     bytes += generator.text('Pesanan:',
         styles: const PosStyles(bold: false, align: PosAlign.center));
     //for from data
@@ -68,7 +68,7 @@ class CwbPrint {
       ]);
     }
 
-    bytes += generator.feed(1);
+    bytes += generator.hr();
 
     bytes += generator.row([
       PosColumn(
@@ -108,7 +108,7 @@ class CwbPrint {
         styles: const PosStyles(align: PosAlign.right),
       ),
     ]);
-
+    bytes += generator.hr();
     bytes += generator.feed(1);
     bytes += generator.text('Terima kasih',
         styles: const PosStyles(bold: false, align: PosAlign.center));

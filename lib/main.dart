@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_pos_app/core/assets/assets.gen.dart';
 import 'package:flutter_pos_app/data/datasources/auth_local_datasource.dart';
 import 'package:flutter_pos_app/data/datasources/auth_remote_datasource.dart';
@@ -90,6 +91,7 @@ class MyApp extends StatelessWidget {
                 return const LoginPage();
               }
             }),
+        builder: EasyLoading.init(),
       ),
     );
   }

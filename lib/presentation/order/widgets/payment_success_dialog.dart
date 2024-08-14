@@ -4,9 +4,11 @@ import 'package:flutter_pos_app/core/constants/colors.dart';
 import 'package:flutter_pos_app/core/extensions/build_context_ext.dart';
 import 'package:flutter_pos_app/core/extensions/date_time_ext.dart';
 import 'package:flutter_pos_app/core/extensions/int_ext.dart';
+import 'package:flutter_pos_app/data/dataoutputs/print_invoice.dart';
 import 'package:flutter_pos_app/presentation/home/bloc/checkout/checkout_bloc.dart';
 import 'package:flutter_pos_app/presentation/home/pages/dashboard_page.dart';
 import 'package:flutter_pos_app/presentation/order/bloc/order/order_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:print_bluetooth_thermal/print_bluetooth_thermal.dart';
 
 import '../../../core/assets/assets.gen.dart';
@@ -19,6 +21,11 @@ class PaymentSuccessDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String formatDateTime(DateTime dateTime) {
+      final DateFormat formatter = DateFormat("yyyy-MM-ddTHH:mm:ss");
+      return formatter.format(dateTime);
+    }
+
     return AlertDialog(
       scrollable: true,
       title: Column(
@@ -91,13 +98,15 @@ class PaymentSuccessDialog extends StatelessWidget {
                         child: Button.outlined(
                           onPressed: () async {
                             final printValue =
-                                await CwbPrint.instance.printOrder(
+                                await PrintInvoice.instance.printOrder(
                               data,
                               qty,
                               total,
                               paymentType,
                               nominal,
                               nameKasir,
+                              nameKasir,
+                              formatDateTime(DateTime.now()),
                             );
                             await PrintBluetoothThermal.writeBytes(printValue);
                             // final result =
